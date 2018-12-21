@@ -122,32 +122,26 @@ class IOUtils {
  
 }
  
- 
- ////////////////    USAGE    ////////////////
-
-
- /*
- 
- //initialize
-        InputReader in 		= new InputReader(System.in);
-        OutputWriter out	=	new OutputWriter(System.out);
-  
-//read int
-   int i = in.readInt();
-//read string
-   String s = in.readString();
-//read int array of size N
-   int[] x = IOUtils.readIntArray(in,N);
-//printline
-   out.printLine("X");
- 
- 
-//flush output
-   out.flush();
- 
-//remember to close the
-//outputstream, at the end
-   out.close();
- 
- 
- */
+class CSUB{
+	public static void main(String[] args){
+		InputReader in = new InputReader(System.in);
+		OutputWriter out = new OutputWriter(System.out);
+		int t = in.readInt();
+		while(t>0){
+			int n = in.readInt();
+			String s = in.readString();
+			int i=0,c=0;
+			while(i<s.length()){
+				if(s.charAt(i)=='1'){
+					c++;
+				}
+				i++;
+			}
+			long res=0;
+			res = (c*(c+1))/2;
+			out.printLine(res);
+			t--;
+		}
+		out.close();
+	}
+}

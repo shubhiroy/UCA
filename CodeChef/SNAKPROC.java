@@ -1,7 +1,6 @@
 import java.util.*;
 import java.io.*;
 
-
 class InputReader {
  
 	private InputStream stream;
@@ -121,33 +120,34 @@ class IOUtils {
 	}
  
 }
- 
- 
- ////////////////    USAGE    ////////////////
 
-
- /*
- 
- //initialize
-        InputReader in 		= new InputReader(System.in);
-        OutputWriter out	=	new OutputWriter(System.out);
-  
-//read int
-   int i = in.readInt();
-//read string
-   String s = in.readString();
-//read int array of size N
-   int[] x = IOUtils.readIntArray(in,N);
-//printline
-   out.printLine("X");
- 
- 
-//flush output
-   out.flush();
- 
-//remember to close the
-//outputstream, at the end
-   out.close();
- 
- 
- */
+class SNAKPROC{
+	public static void main(String[] args){
+		InputReader in = new InputReader(System.in);
+		OutputWriter out = new OutputWriter(System.out);
+		int r = in.readInt();
+		while(r>0){
+			int l = in.readInt();
+			String s = in.readString();
+			String res = "Valid";
+			int c=0,i=0;
+			while(i<s.length()){
+				if(s.charAt(i)=='H'){
+					c++;
+				}else if(s.charAt(i)=='T'){
+					c--;
+				}
+				if(c>1 || c<0){
+					res="Invalid";
+				}
+				i++;
+			}
+			if(c!=0){
+				res = "Invalid";
+			}
+			out.printLine(res);
+			r--;
+		}
+		out.close();
+	}
+}
