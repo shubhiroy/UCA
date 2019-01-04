@@ -122,43 +122,22 @@ class IOUtils {
  
 }
 
-class ALPHABET{
-	private static int check(String s,boolean[] b){
-		int i = 0;
-		while(i<s.length()-1){
-			int c = s.charAt(i);
-			if(b[c]!=true){
-				return 0;
-			}
-			i++;
-		}
-		return 1;
-	}
+class HORSES{
 	public static void main(String[] args){
 		InputReader in = new InputReader(System.in);
 		OutputWriter out = new OutputWriter(System.out);
-		int t = 1;
+		int t = in.readInt();
 		while(t>0){
-			String latin = in.readString();
 			int n = in.readInt();
-			int i = 0;
-			boolean[] alph = new boolean[1000];
-			while(i<latin.length()-1){
-				int c = latin.charAt(i);
-				alph[c]=true;
-				i++;
-			}
-			String[] book = new String[n];
-			for(i=0;i<n;i++){
-				book[i] = in.readString();
-			}
-			for(i=0;i<n;i++){
-				if(check(book[i],alph)==1){
-					out.printLine("Yes");
-				}else{
-					out.printLine("No");
+			int[] x = IOUtils.readIntArray(in,n);
+			Arrays.sort(x);
+			int min=x[1]-x[0];
+			for(int i=1;i<x.length;i++){
+				if((x[i]-x[i-1])<min){
+					min = x[i]-x[i-1];
 				}
 			}
+			out.printLine(min);
 			t--;
 		}
 		out.close();
