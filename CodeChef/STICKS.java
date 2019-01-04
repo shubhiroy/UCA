@@ -152,6 +152,6 @@ class STICKS{
 			out.printLine(mult[0]*mult[1]);
 			t--;
 		}
-		out.close();
+		out.close(); 
 	}
 }
