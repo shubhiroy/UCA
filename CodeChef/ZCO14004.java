@@ -122,41 +122,34 @@ class IOUtils {
  
 }
 
-class STICKS{
+class ZCO14004{
+	static int[] dparr = new int[1000];
+	private static int dp(int days,int[] fee){
+		if(days==0){
+			return fee[days];
+		}
+		if(days==1){
+			return fee[days]+fee[days-1];
+		}
+		if(days==2){
+			return java.lang.Math.max(java.lang.Math.max((fee[days]+fee[days-1]),fee[days]+fee[days-2]),(fee[days-1]+fee[days-2]));
+		}
+		if(dparr[days]!=0){
+			return dparr[days];
+		}
+		dparr[days] = java.lang.Math.max(java.lang.Math.max((fee[days]+fee[days-1]+dp(days-3,fee)),fee[days]+dp(days-2,fee)),dp(days-1,fee));
+		return dparr[days];
+	}
 	public static void main(String[] args){
 		InputReader in = new InputReader(System.in);
 		OutputWriter out = new OutputWriter(System.out);
 		int t = in.readInt();
 		while(t>0){
-			int n = in.readInt();
-			int[] x = IOUtils.readIntArray(in,n);
-			int[] aug = new int[1001];
-			int max=0;
-			for(int i = 0;i<x.length;i++){
-				if(max<x[i]){
-					max=x[i];
-				}
-				aug[x[i]]++;
-			}
-			int[] mult = new int[2];
-			int ind=0;
-			for(int i = max;i>0;i--){
-				if(aug[i]>1){
-					mult[ind] = i;
-					ind++;
-				}
-				if(ind>1){
-					break;
-				}
-			}
-			int area = mult[0]*mult[1];
-			if(area==0){
-				out.printLine("-1");
-			}else{
-				out.printLine(area);
-			}
+			int days = in.readInt();
+			int[] fee = IOUtils.readIntArray(in,days);
+			out.printLine(dp(days-1,fee));
 			t--;
 		}
-		out.close(); 
+		out.close();
 	}
 }
