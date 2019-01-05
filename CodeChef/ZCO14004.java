@@ -123,7 +123,7 @@ class IOUtils {
 }
 
 class ZCO14004{
-	static int[] dparr = new int[1000];
+	static int[] dparr = new int[100001];
 	private static int dp(int days,int[] fee){
 		if(days==0){
 			return fee[days];
