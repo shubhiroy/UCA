@@ -123,7 +123,32 @@ class IOUtils {
 }
 
 class ZCO14002{
+	private static int[] dparr = new int[1000001];
+	private static int dp(int days, int[] work){
+		if(days == 0){
+			dparr[days] = 0;
+			return dparr[days];
+		}
+		if(days == 1){
+			dparr[days] = 0;
+			return dparr[days];
+		}
+		if(dparr[days] != 0){
+			return dparr[days];
+		}
+		if(days == 2){
+			dparr[days] = java.lang.Math.min(work[0] , java.lang.Math.min(work[1] , work[2]));
+			return dparr[days];
+		}
+		dparr[days] = java.lang.Math.min(work[days] + dp(days-1,work), java.lang.Math.min(work[days-1] + dp(days-2, work), work[days-2] + dp(days-3,work)));
+		return dparr[days];
+	}
 	public static void main(String[] args){
-		
+		InputReader in = new InputReader(System.in);
+		OutputWriter out = new OutputWriter(System.out);
+		int days = in.readInt();
+		int[] work = IOUtils.readIntArray(in,days);
+		out.printLine(dp(days-1,work));
+		out.close();
 	}
 }
