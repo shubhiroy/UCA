@@ -1,4 +1,17 @@
-public class Solution {
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) {
+ *      val = x;
+ *      left=null;
+ *      right=null;
+ *     }
+ * }
+ */
+ public class Solution {
     public ArrayList<Integer> postorderTraversal(TreeNode A) {
         ArrayList<Integer> ar = new ArrayList<>();
         Stack<Integer> st1 = new Stack<>();
